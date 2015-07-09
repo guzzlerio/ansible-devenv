@@ -1,0 +1,20 @@
+# vim:ft=ansible:
+#
+- name: zsh
+  apt: name=zsh state=present
+- name: python
+  apt: name=python state=present
+- name: pip
+  apt: name=python-pip state=present
+- name: powerline
+  pip: name=powerline-status
+- name: tmux
+  apt: name=tmux state=present
+- name: zsh-powerline
+  lineinfile: dest=/home/vagrant/.zshrc line="source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh" state=present create=yes
+  remote_user: vagrant
+  sudo: False
+- name: tmux-powerline
+  lineinfile: dest=/home/vagrant/.tmux.conf line="source /usr/local/lib/python2.7/dist-packages/powerline/bindings/tmux/powerline.conf" state=present create=yes
+  remote_user: vagrant
+  sudo: False

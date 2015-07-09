@@ -1,0 +1,9 @@
+# vim:ft=ansible:
+---
+- hosts: all
+  sudo: true
+  tasks: 
+  - include: roles/host.yml
+  - include: roles/shell.yml
+  - include: roles/text-editor.yml
+  - include: roles/c-development.yml
