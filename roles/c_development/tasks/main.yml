@@ -13,8 +13,6 @@
   apt: name=pkgconf state=present
 - name: doxygen
   apt: name=doxygen state=present
-- name: git
-  apt: name=git state=present
 - name: autoconf
   apt: name=autoconf state=present
 - name: automake

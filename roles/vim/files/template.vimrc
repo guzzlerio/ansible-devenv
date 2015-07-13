@@ -19,3 +19,12 @@ set laststatus=2
 
 syntax on
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+"Vundle Plugins
+"End of Vundle Plugins
+
+
+call vundle#end()

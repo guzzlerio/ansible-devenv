@@ -1,0 +1,9 @@
+# vim:ft=ansible:
+- name: update apt cache
+  apt: update_cache=yes
+- name: git
+  apt: name=git state=present
+- name: python
+  apt: name=python state=present
+- name: pip
+  apt: name=python-pip state=present

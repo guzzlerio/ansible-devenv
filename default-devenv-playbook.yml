@@ -1,0 +1,17 @@
+# vim:ft=ansible:
+---
+- hosts: all
+  sudo: true
+  vars:
+  - vim_plugins:
+    - gmarik/Vundle.vim
+    - scrooloose/nerdtree
+    - nanotech/jellybeans.vim
+    - kristijanhusak/vim-multiple-cursors
+    - tomtom/tlib_vim
+    - airblade/vim-gitgutter
+    - Chiel92/vim-autoformat
+  roles: 
+  - host
+  - shell
+  - c_development

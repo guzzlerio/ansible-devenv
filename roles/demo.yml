@@ -1,0 +1,6 @@
+# vim:ft=ansible:
+#
+
+- name: debug variables
+  debug: msg="message = {{item}}"
+  with_items: vim_plugins

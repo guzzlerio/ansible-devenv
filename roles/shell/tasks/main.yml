@@ -2,10 +2,6 @@
 #
 - name: zsh
   apt: name=zsh state=present
-- name: python
-  apt: name=python state=present
-- name: pip
-  apt: name=python-pip state=present
 - name: powerline
   pip: name=powerline-status
 - name: tmux
@@ -18,3 +14,4 @@
   lineinfile: dest=/home/vagrant/.tmux.conf line="source /usr/local/lib/python2.7/dist-packages/powerline/bindings/tmux/powerline.conf" state=present create=yes
   remote_user: vagrant
   sudo: False
+- include: productivity.yml
