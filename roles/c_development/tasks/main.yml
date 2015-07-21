@@ -1,6 +1,4 @@
 # vim:ft=ansible:
-- name: build-essential
-  apt: name=build-essential state=present
 - name: gdb
   apt: name=gdb state=present
 - name: valgrind
@@ -31,3 +29,5 @@
   apt: name=libxml2 state=present
 - name: libjson
   apt: name=libjson-c-dev state=present
+- name: libssl
+  apt: name=libssl-dev state=present

@@ -3,6 +3,9 @@
 - hosts: all
   sudo: true
   vars:
+  - nvm:
+      version: v0.25.3
+      node_version: '0.12'
   - vim_plugins:
     - gmarik/Vundle.vim
     - scrooloose/nerdtree
@@ -15,3 +18,4 @@
   - host
   - shell
   - c_development
+  - node_development

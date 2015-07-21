@@ -1,6 +1,10 @@
 # vim:ft=ansible:
 - name: update apt cache
   apt: update_cache=yes
+- name: build-essential
+  apt: name=build-essential state=present
+- name: curl
+  apt: name=curl state=present
 - name: git
   apt: name=git state=present
 - name: python
