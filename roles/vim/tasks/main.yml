@@ -21,3 +21,8 @@
   remote_user: vagrant
   sudo: False
   with_items: vim_plugins
+- name: vim-settings
+  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Settings" 
+  remote_user: vagrant
+  sudo: False
+  with_items: vim_settings

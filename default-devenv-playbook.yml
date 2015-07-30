@@ -6,6 +6,8 @@
   - nvm:
       version: v0.25.3
       node_version: '0.12'
+  - vim_settings:
+    - 'let NERDTreeDirArrows=0'
   - vim_plugins:
     - gmarik/Vundle.vim
     - scrooloose/nerdtree
@@ -14,6 +16,7 @@
     - tomtom/tlib_vim
     - airblade/vim-gitgutter
     - Chiel92/vim-autoformat
+    - ryanoasis/vim-webdevicons
   roles: 
   - vim
   - host

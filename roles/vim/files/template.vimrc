@@ -26,6 +26,7 @@ call vundle#begin()
 "Vundle Plugins
 "End of Vundle Plugins
 
+set encoding=utf-8
 "Settings
 "End of Settings
 
