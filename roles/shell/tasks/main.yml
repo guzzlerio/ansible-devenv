@@ -6,6 +6,10 @@
   pip: name=powerline-status
 - name: tmux
   apt: name=tmux state=present
+- name: tmux.conf
+  copy: src=template.tmux.conf dest=/home/vagrant/.tmux.conf owner=vagrant group=vagrant mode=0644
+  remote_user: vagrant
+  sudo: False
 - name: zsh-powerline
   lineinfile: dest=/home/vagrant/.zshrc line="source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh" state=present create=yes
   remote_user: vagrant
