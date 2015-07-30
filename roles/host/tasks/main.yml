@@ -7,6 +7,10 @@
   apt: name=curl state=present
 - name: git
   apt: name=git state=present
+- name: gitconfig
+  copy: src=template.gitconfig dest=/home/vagrant/.gitconfig owner=vagrant group=vagrant mode=0644
+  remote_user: vagrant
+  sudo: False
 - name: python
   apt: name=python state=present
 - name: pip
