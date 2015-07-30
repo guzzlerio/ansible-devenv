@@ -14,4 +14,9 @@
   git: repo=https://github.com/zolrath/wemux.git dest=/usr/local/share/wemux update=yes
 - name: wemux-link
   file: src=/usr/local/share/wemux/wemux dest=/usr/local/bin/wemux state=link
+- name: wemux.conf
+  copy: src=template.wemux.conf dest=/usr/local/etc/wemux.conf owner=vagrant group=vagrant mode=0644
+  remote_user: vagrant
+  sudo: True
+
 
