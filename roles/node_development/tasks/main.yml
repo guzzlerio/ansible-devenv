@@ -1,18 +1,15 @@
 # vim:ft=ansible:
 #
-- name: Create nvm directory
-  file: path=/home/vagrant/.nvm state=directory owner=vagrant group=vagrant mode=0755
+- name: nodejs
+  apt: name=nodejs
+- name: npm
+  apt: name=npm
+- name: vim-plugins
+  lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
   remote_user: vagrant
   sudo: False
-- name: Install nvm
-  git: repo=https://github.com/creationix/nvm.git dest=/home/vagrant/.nvm version={{ nvm.version }}
-  remote_user: vagrant
-  sudo: False
-- name: Source nvm in /home/vagrant/.profile
-  lineinfile: dest=/home/vagrant/.profile line="source /home/vagrant/.nvm/nvm.sh" 
-  remote_user: vagrant
-  sudo: False
-- name: Install {{ nvm.node_version }}
-  command: nvm install {{ nvm.node_version }}
-  remote_user: vagrant
-  sudo: False
+  with_items: 
+    - moll/vim-node
+    - jelera/vim-javascript-syntax
+    - marijnh/tern_for_vim
+    - vim-scripts/JavaScript-Indent

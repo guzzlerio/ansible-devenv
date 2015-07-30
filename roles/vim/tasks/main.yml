@@ -3,7 +3,7 @@
 - name: vim
   apt: name=vim-nox state=present
 - name: vimrc
-  copy: src=vim/template.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
+  copy: src=template.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
 - name: vim-powerline

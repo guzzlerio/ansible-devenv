@@ -15,6 +15,7 @@
     - airblade/vim-gitgutter
     - Chiel92/vim-autoformat
   roles: 
+  - vim
   - host
   - shell
   - c_development

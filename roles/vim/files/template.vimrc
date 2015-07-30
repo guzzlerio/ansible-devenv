@@ -26,5 +26,10 @@ call vundle#begin()
 "Vundle Plugins
 "End of Vundle Plugins
 
+"Settings
+"End of Settings
+
+"Keybindings
+"End of Keybindings
 
 call vundle#end()
