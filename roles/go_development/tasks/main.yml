@@ -1,0 +1,23 @@
+# vim:ft=ansible:
+- name: download golang binaries
+  get_url: url=https://storage.googleapis.com/golang/go{{ golang.version }}.linux-amd64.tar.gz dest=/usr/local
+- name: unpack golang binaries
+  unarchive: src=/usr/local/go{{ golang.version }}.linux-amd64.tar.gz dest=/usr/local owner=vagrant group=vagrant copy=no
+  sudo_user: root
+- name: add golang to the path
+  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:/usr/local/go/bin" insertbefore="^#End of Paths" 
+  remote_user: vagrant
+  sudo: False
+- name: create GO HOME
+  file: path=/home/vagrant/go owner=vagrant group=vagrant state=directory
+- name: add golang ROOT
+  lineinfile: dest=/home/vagrant/.bashrc line="export GOROOT=$HOME/go" insertbefore="^#End of Paths" 
+  remote_user: vagrant
+  sudo: False
+- name: add golang ROOT bin to PATH
+  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$GOROOT/bin" insertbefore="^#End of Paths" 
+  remote_user: vagrant
+  sudo: False
+
+  
+  

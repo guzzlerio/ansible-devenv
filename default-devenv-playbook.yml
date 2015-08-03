@@ -3,6 +3,8 @@
 - hosts: all
   sudo: true
   vars:
+  - golang:
+      version: '1.4.2'
   - nvm:
       version: v0.25.3
       node_version: '0.12'
@@ -24,3 +26,4 @@
   - shell
   - c_development
   - node_development
+  - go_development

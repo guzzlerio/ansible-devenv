@@ -15,3 +15,7 @@
     - jelera/vim-javascript-syntax
     - marijnh/tern_for_vim
     - vim-scripts/JavaScript-Indent
+- name: node-alias for ubuntu
+  lineinfile: dest=/home/vagrant/.bashrc line="alias node='nodejs'" insertbefore="^#End of Aliases" 
+  remote_user: vagrant
+  sudo: False
