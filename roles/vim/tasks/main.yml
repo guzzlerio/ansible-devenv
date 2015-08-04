@@ -26,3 +26,8 @@
   remote_user: vagrant
   sudo: False
   with_items: vim_settings
+- name: vim-key-bindings
+  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Keybindings" 
+  remote_user: vagrant
+  sudo: False
+  with_items: vim_key_bindings

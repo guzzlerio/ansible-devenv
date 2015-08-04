@@ -2,8 +2,10 @@
 #
 - name: nodejs
   apt: name=nodejs
-- name: nodejs-alias
-  lineinfile: create=yes dest=/home/vagrant/.bash_aliases line="alias node='nodejs'" insertafter=EOF
+- name: nodejs-legacy-symlink
+  apt: name=nodejs-legacy
+#- name: nodejs-alias
+#lineinfile: create=yes dest=/home/vagrant/.bash_aliases line="alias node='nodejs'" insertafter=EOF
 - name: npm
   apt: name=npm
 - name: vim-plugins

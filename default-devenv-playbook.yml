@@ -11,6 +11,8 @@
   - vim_settings:
     - 'colorscheme jellybeans'
     - 'let NERDTreeDirArrows=0'
+  - vim_key_bindings:
+    - 'nmap <silent> <C-D> :NERDTreeToggle<CR>'
   - vim_plugins:
     - gmarik/Vundle.vim
     - scrooloose/nerdtree
