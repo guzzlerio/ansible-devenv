@@ -4,16 +4,26 @@
   sudo: true
   vars:
   - golang:
-      version: '1.4.2'
+      version: '1.4.1'
   - nvm:
       version: v0.25.3
       node_version: '0.12'
   - vim_settings:
     - 'colorscheme jellybeans'
     - 'let NERDTreeDirArrows=0'
+    - 'let g:go_highlight_functions = 1'
+    - 'let g:go_highlight_methods = 1'
+    - 'let g:go_highlight_structs = 1'
+    - 'let g:go_highlight_operators = 1'
+    - 'let g:go_highlight_build_constraints = 1'
+    - 'let g:go_fmt_command = "goimports"'
+    - 'let g:go_fmt_fail_silently = 1'
+    - 'let g:go_fmt_autosave = 0'
   - vim_key_bindings:
     - 'nmap <silent> <C-D> :NERDTreeToggle<CR>'
     - 'noremap <F7> :Autoformat<CR>'
+    - 'nnoremap <space> za'
+    - 'au FileType go nmap <leader>f <Plug>(gofmt)'
   - vim_plugins:
     - gmarik/Vundle.vim
     - scrooloose/nerdtree

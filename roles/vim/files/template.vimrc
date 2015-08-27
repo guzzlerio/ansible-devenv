@@ -23,12 +23,12 @@ set number
 set showcmd
 set cursorline
 set showmatch
+set foldenable
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 set laststatus=2
 set encoding=utf-8
-
 
 "Settings
 "End of Settings

@@ -26,8 +26,10 @@
 - name: libSQLite3
   apt: name=libsqlite3-dev state=present
 - name: libxml2
-  apt: name=libxml2 state=present
+  apt: name=libxml2-dev state=present
 - name: libjson
   apt: name=libjson-c-dev state=present
 - name: libssl
   apt: name=libssl-dev state=present
+- name: libxslt
+  apt: name=libxslt-dev state=present
