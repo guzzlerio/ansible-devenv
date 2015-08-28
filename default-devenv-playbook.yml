@@ -22,6 +22,7 @@
     - airblade/vim-gitgutter
     - Chiel92/vim-autoformat
     - ryanoasis/vim-webdevicons
+    - editorconfig/editorconfig-vim
   roles: 
   - vim
   - host
