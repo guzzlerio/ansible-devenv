@@ -21,3 +21,5 @@
   lineinfile: dest=/home/vagrant/.bashrc line="alias node='nodejs'" insertbefore="^#End of Aliases" 
   remote_user: vagrant
   sudo: False
+- name: js-beautify
+  npm: name=js-beautify global=yes
