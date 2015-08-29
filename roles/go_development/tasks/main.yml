@@ -13,11 +13,15 @@
   remote_user: vagrant
   sudo: False
 - name: add golang PATH
-  lineinfile: dest=/home/vagrant/.bashrc line="export GOROOT=$HOME/go" insertbefore="^#End of Paths" 
+  lineinfile: dest=/home/vagrant/.bashrc line="export GOPATH=$HOME/go" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
 - name: add golang ROOT bin to PATH
   lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$GOROOT/bin" insertbefore="^#End of Paths" 
+  remote_user: vagrant
+  sudo: False
+- name: add golang PATH bin to PATH
+  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$GOPATH/bin" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
 - name: source bashrc
@@ -30,10 +34,6 @@
   #  file: path=/usr/local/go owner=vagrant group=vagrant state=directory recurse=yes
   #- name: build golang
   #  shell: (cd /usr/local/go && git checkout go{{ golang.version}} && cd ./src && ./all.bash)
-- name: add golang to the path
-  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:/usr/local/go/bin" insertbefore="^#End of Paths" 
-  remote_user: vagrant
-  sudo: False
 
   
   
