@@ -1,11 +1,7 @@
 # vim:ft=ansible:
 #
-#TODO: check if nvm is install
 - stat: path=~/.nvm/nvm.sh
   register: nvm_installed
-
-- name: what is in nvm_installed
-  debug: nvm_installed
 
 - name: Install nvm
   sudo: yes
@@ -50,28 +46,12 @@
     - marijnh/tern_for_vim
     - vim-scripts/JavaScript-Indent
 
-- name: js-beautify
+- name: npm globals
   remote_user: vagrant
   sudo: False
-  shell: source ~/.nvm/nvm.sh && npm i -g js-beautify
+  shell: source ~/.nvm/nvm.sh && npm i -g {{ item }}
     executable=/bin/bash
-- name: gulp
-  remote_user: vagrant
-  sudo: False
-  shell: source ~/.nvm/nvm.sh && npm i -g gulp
-    executable=/bin/bash
-- name: grunt
-  remote_user: vagrant
-  sudo: False
-  shell: source ~/.nvm/nvm.sh && npm i -g grunt
-    executable=/bin/bash
-- name: nodemon
-  remote_user: vagrant
-  sudo: False
-  shell: source ~/.nvm/nvm.sh && npm i -g nodemon
-    executable=/bin/bash
-- name: nesh
-  remote_user: vagrant
-  sudo: False
-  shell: source ~/.nvm/nvm.sh && npm i -g nesh
-    executable=/bin/bash
+  with_items:
+    - js-beautify
+    - "{{ npm_globals }}"
+

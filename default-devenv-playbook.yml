@@ -35,6 +35,11 @@
     - Chiel92/vim-autoformat
     - ryanoasis/vim-webdevicons
     - editorconfig/editorconfig-vim
+  - npm_globals:
+    - gulp
+    - grunt
+    - nesh
+    - nodemon
   roles: 
     - vim
     - host
