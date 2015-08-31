@@ -1,19 +1,25 @@
 # ag - Super fast string search through a directory hierarchy
 - name: ag
   apt: name=silversearcher-ag state=present
+
 # autoenv - Directory-based environments
 - name: autoenv
   pip: name=autoenv
+
 # autojump - A cd command that learns - easily navigate directories from the command line
 - name: autojump
   apt: name=autojump state=present
+
 # parallel - Build and execute shell command lines from standard input in parallel
 - name: parallel
   apt: name=parallel state=present
+
 - name: wemux-install
   git: repo=https://github.com/zolrath/wemux.git dest=/usr/local/share/wemux update=yes
+
 - name: wemux-link
   file: src=/usr/local/share/wemux/wemux dest=/usr/local/bin/wemux state=link
+
 - name: wemux.conf
   copy: src=template.wemux.conf dest=/usr/local/etc/wemux.conf owner=vagrant group=vagrant mode=0644
   remote_user: vagrant

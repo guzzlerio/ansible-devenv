@@ -20,14 +20,26 @@
   lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
   remote_user: vagrant
   sudo: False
-  with_items: vim_plugins
+  with_items:
+    - gmarik/Vundle.vim
+    - scrooloose/nerdtree
+    - kristijanhusak/vim-multiple-cursors
+    - Chiel92/vim-autoformat
+    - editorconfig/editorconfig-vim
+    - airblade/vim-gitgutter
+    - "{{ vim_plugins }}"
 - name: vim-settings
   lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Settings" 
   remote_user: vagrant
   sudo: False
-  with_items: vim_settings
+  with_items:
+    - 'let NERDTreeDirArrows=0'
+    - "{{ vim_settings }}"
 - name: vim-key-bindings
   lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Keybindings" 
   remote_user: vagrant
   sudo: False
-  with_items: vim_key_bindings
+  with_items:
+    - 'nmap <silent> <C-D> :NERDTreeToggle<CR>'
+    - 'noremap <F7> :Autoformat<CR>'
+    - "{{ vim_key_bindings }}"
