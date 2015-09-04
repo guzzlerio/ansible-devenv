@@ -1,39 +1,72 @@
 # vim:ft=ansible:
 - name: download golang binaries
   get_url: url=https://storage.googleapis.com/golang/go{{ golang.version }}.linux-amd64.tar.gz dest=/usr/local
+
 - name: unpack golang binaries
   unarchive: src=/usr/local/go{{ golang.version }}.linux-amd64.tar.gz dest=/usr/local owner=vagrant group=vagrant copy=no
   sudo_user: root
+
 - name: create GO HOME
   file: path=/home/vagrant/go owner=vagrant group=vagrant state=directory
   remote_user: vagrant
   sudo: False
+
 - name: add golang ROOT
   lineinfile: dest=/home/vagrant/.bashrc line="export GOROOT=/usr/local/go" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
+
 - name: add golang PATH
   lineinfile: dest=/home/vagrant/.bashrc line="export GOPATH=$HOME/go" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
+
 - name: add golang ROOT bin to PATH
   lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$GOROOT/bin" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
+
 - name: add golang PATH bin to PATH
   lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$GOPATH/bin" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
+
 - name: source bashrc
   shell: . /home/vagrant/.bashrc
   remote_user: vagrant
   sudo: False
+
+# Currently no vim plugins used for go
+# - name: vim-plugins
+#   lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
+#   remote_user: vagrant
+#   sudo: False
+#   with_items:
+
+- name: vim-settings
+  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Settings" 
+  remote_user: vagrant
+  sudo: False
+  with_items:
+    - 'let g:go_highlight_functions = 1'
+    - 'let g:go_highlight_methods = 1'
+    - 'let g:go_highlight_structs = 1'
+    - 'let g:go_highlight_operators = 1'
+    - 'let g:go_highlight_build_constraints = 1'
+    - 'let g:go_fmt_command = \"goimports\"'
+    - 'let g:go_fmt_fail_silently = 1'
+    - 'let g:go_fmt_autosave = 0'
+
+- name: vim-key-bindings
+  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Keybindings" 
+  remote_user: vagrant
+  sudo: False
+  with_items:
+    - 'au FileType go nmap <leader>f <Plug>(gofmt)'
+
   #- name: go from source
   #  git: repo=https://go.googlesource.com/go dest=/usr/local/go force=yes
   #- name: change ownership og go path
   #  file: path=/usr/local/go owner=vagrant group=vagrant state=directory recurse=yes
   #- name: build golang
   #  shell: (cd /usr/local/go && git checkout go{{ golang.version}} && cd ./src && ./all.bash)
-
-  
-  
