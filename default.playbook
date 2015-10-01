@@ -1,0 +1,34 @@
+# vim:ft=ansible:
+---
+- hosts: all
+  sudo: true
+  vars:
+  - jdk:
+      version: '8'
+  - golang:
+      version: '1.5'
+  - nvm:
+      user: 'vagrant'
+      version: v0.26.1
+      node_version: '0.12'
+  - vim_settings:
+    - 'colorscheme jellybeans'
+  - vim_key_bindings:
+    - 'nnoremap <space> za'
+  - vim_plugins:
+    - tomtom/tlib_vim     # what is this one for?
+    - ryanoasis/vim-webdevicons
+    - nanotech/jellybeans.vim
+  - npm_globals:
+    - gulp
+    - grunt-cli
+    - nesh
+    - nodemon
+  roles: 
+    - vim
+    - host
+    - shell
+    - c_development
+    - node_development
+    - go_development
+    - jvm_development 
