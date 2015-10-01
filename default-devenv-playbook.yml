@@ -3,8 +3,10 @@
 - hosts: all
   sudo: true
   vars:
+  - jdk:
+      version: '8'
   - golang:
-      version: '1.4.1'
+      version: '1.5'
   - nvm:
       user: 'vagrant'
       version: v0.26.1
@@ -29,3 +31,4 @@
     - c_development
     - node_development
     - go_development
+    - jvm_development 

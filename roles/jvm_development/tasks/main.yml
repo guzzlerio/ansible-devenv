@@ -1,0 +1,6 @@
+# vim:ft=ansible:
+#
+- name: JDK
+  apt: name=openjdk-{{ jdk.version  }}-jdk
+- name: Download Gradle
+  get_url: url=https://services.gradle.org/distributions/gradle-2.7-bin.zip dest=/home/vagrant/
