@@ -3,6 +3,17 @@
 - name: JDK
   apt: name=openjdk-{{ jdk.version  }}-jdk
 
+  
+- name: Add JAVA Home
+  lineinfile: dest=/home/vagrant/.bashrc line="export JAVA_HOME=/usr/lib/jvm/java-{{ jdk.version  }}-openjdk-amd64" insertbefore="^#End of Paths"
+  remote_user: vagrant
+  sudo: False
+
+- name: Add Java Home path to bin path
+  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$JAVA_HOME/bin" insertbefore="^#End of Paths"
+  remote_user: vagrant
+  sudo: False
+
 - name: Download Gradle
   get_url: url=https://services.gradle.org/distributions/gradle-{{gradle.version  }}-bin.zip dest=/home/vagrant/
   remote_user: vagrant
@@ -15,5 +26,15 @@
 
 - name: Unzip Gradle
   unarchive: src=/home/vagrant/gradle-{{ gradle.version }}-bin.zip dest=/usr/local/opt/ creates=yes copy=no
+  remote_user: vagrant
+  sudo: False
+
+- name: Add Gradle Home
+  lineinfile: dest=/home/vagrant/.bashrc line="export GRADLE_HOME=/usr/local/opt/gradle-{{ gradle.version  }}" insertbefore="^#End of Paths"
+  remote_user: vagrant
+  sudo: False
+
+- name: Add Gradle Home path to bin path
+  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$GRADLE_HOME/bin" insertbefore="^#End of Paths"
   remote_user: vagrant
   sudo: False
