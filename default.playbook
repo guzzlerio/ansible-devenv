@@ -5,6 +5,8 @@
   vars:
   - jdk:
       version: '8'
+  - gradle:
+      version: '2.7'
   - golang:
       version: '1.5'
   - nvm:

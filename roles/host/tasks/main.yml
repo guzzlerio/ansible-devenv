@@ -5,6 +5,8 @@
   apt: name=build-essential state=present
 - name: curl
   apt: name=curl state=present
+- name: unzip
+  apt: name=unzip state=present
 - name: git
   apt: name=git state=present
 - name: gitconfig

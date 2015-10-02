@@ -2,5 +2,18 @@
 #
 - name: JDK
   apt: name=openjdk-{{ jdk.version  }}-jdk
+
 - name: Download Gradle
-  get_url: url=https://services.gradle.org/distributions/gradle-2.7-bin.zip dest=/home/vagrant/
+  get_url: url=https://services.gradle.org/distributions/gradle-{{gradle.version  }}-bin.zip dest=/home/vagrant/
+  remote_user: vagrant
+  sudo: False
+
+- name: Create the directory for Gradle
+  file: path=/usr/local/opt state=directory owner=vagrant group=vagrant mode=0755
+  remote_user: vagrant
+  sudo: True
+
+- name: Unzip Gradle
+  unarchive: src=/home/vagrant/gradle-{{ gradle.version }}-bin.zip dest=/usr/local/opt/ creates=yes copy=no
+  remote_user: vagrant
+  sudo: False
