@@ -1,0 +1,4 @@
+# vim:ft=ansible:
+#
+- name: activemq
+  apt: name=activemq state=present
