@@ -9,6 +9,8 @@
       version: '2.7'
   - golang:
       version: '1.5'
+  - activemq:
+      version: '5.12.0'
   - nvm:
       user: 'vagrant'
       version: v0.26.1

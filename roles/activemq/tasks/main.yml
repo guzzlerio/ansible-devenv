@@ -1,4 +1,19 @@
 # vim:ft=ansible:
 #
-- name: activemq
-  apt: name=activemq state=present
+- name: download activemq
+  get_url: url=http://apache.mirror.anlx.net/activemq/{{ activemq.version  }}/apache-activemq-{{ activemq.version  }}-bin.tar.gz dest=/usr/local/opt/apache-activemq-{{ activemq.version  }}-bin.tar.gz
+  remote_user: vagrant
+
+- name: unarchive activemq
+  unarchive: src=/usr/local/opt/apache-activemq-{{ activemq.version  }}-bin.tar.gz dest=/usr/local/opt/ creates=yes copy=no owner=vagrant group=vagrant
+  remote_user: vagrant
+
+- name: add ACTIVEMQ_HOME variable
+  lineinfile: dest=/home/vagrant/.bashrc line="export ACTIVEMQ_HOME=/usr/local/opt/apache-activemq-{{ activemq.version  }}" insertbefore="^#End of Paths"
+  remote_user: vagrant
+  sudo: False
+
+- name: add ACTIVEMQ_HOME path to bin path
+  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$ACTIVEMQ_HOME/bin" insertbefore="^#End of Paths"
+  remote_user: vagrant
+  sudo: False
