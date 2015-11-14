@@ -121,3 +121,7 @@ fi
 
 #Paths
 #End of Paths
+#
+safename(){
+ echo $1 | sed -e 's/[^a-zA-Z0-9\-\#]/_/g' | tr -s "_" | tr '[:upper:]' '[:lower:]'
+}

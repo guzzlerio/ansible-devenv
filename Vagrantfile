@@ -2,14 +2,21 @@
 # vi: set ft=ruby :
 #
 
+
+playbook = 
+    if File.exists? 'devenv.playbook'
+        'devenv.playbook'
+    else
+        'default.playbook'
+    end
+
 Vagrant.configure(2) do |config|
     config.vm.box           = "ubuntu/vivid64"
     config.vm.network       "private_network", ip: "192.168.56.3"
     config.ssh.forward_agent = true
 
     config.vm.provision :ansible do |ansible|
-        ansible.verbose = "vvv"
-        ansible.playbook = "default-devenv-playbook.yml"
+        ansible.playbook = playbook
     end
 
     config.vm.provider :virtualbox do |vb|
