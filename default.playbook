@@ -14,7 +14,7 @@
   - nvm:
       user: 'vagrant'
       version: v0.26.1
-      node_version: '0.12'
+      node_version: '4.2.2'
   - vim_settings:
     - 'colorscheme jellybeans'
   - vim_key_bindings:
@@ -35,4 +35,3 @@
     - c_development
     - node_development
     - go_development
-    - jvm_development 

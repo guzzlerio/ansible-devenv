@@ -1,4 +1,4 @@
 ---
 roles: 
-  - c_development
+  - shell
   - vim

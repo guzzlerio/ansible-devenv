@@ -36,15 +36,10 @@
   when: nvm_check_default|failed
   tags: nvm
 
-- name: vim-plugins
-  lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
+- name: .vimrc
+  copy: src=jsx.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
-  with_items: 
-    - moll/vim-node
-    - jelera/vim-javascript-syntax
-    - marijnh/tern_for_vim
-    - vim-scripts/JavaScript-Indent
 
 - name: npm globals
   remote_user: vagrant
