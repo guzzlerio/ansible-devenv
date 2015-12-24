@@ -1,52 +1,48 @@
 # vim:ft=ansible:
-#
-- stat: path=~/.nvm/nvm.sh
-  register: nvm_installed
-
+---
 - name: Install nvm
-  sudo: yes
-  sudo_user: "{{ nvm.user }}"
-  git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version={{ nvm.version }}
-  when: nvm_installed.stat.exists == False
-  tags: nvm
+  shell: >
+    curl https://raw.githubusercontent.com/creationix/nvm/{{ nvm.version  }}/install.sh | zsh
+    creates=/home/vagrant/.nvm/nvm.sh
+  remote_user: vagrant
+  sudo: False
 
-- name: Source nvm in ~/.profile
-  sudo: yes
-  sudo_user: "{{ nvm.user }}"
-  lineinfile: >
-    dest=~/.profile
-    line="source ~/.nvm/nvm.sh"
-  tags: nvm
+- name: Install node and set version
+  shell: >
+    /bin/zsh -c "source ~/.nvm/nvm.sh && nvm install {{ nvm.node_version  }} && nvm alias default {{ nvm.node_version  }}"
+    creates=/home/vagrant/.nvm/alias#
+  remote_user: vagrant
+  sudo: False
 
-- name: Install {{ nvm.node_version }}
-  command: sudo -iu {{ nvm.user }} nvm install {{ nvm.node_version }}
-  register: nvm_install_result
-  changed_when: "'is already installed.' not in nvm_install_result.stdout"
-  tags: nvm
-
-- name: Check if {{ nvm.node_version }} is the default node version
-  shell: sudo -iu {{ nvm.user }} nvm ls | grep -e 'default -> {{ nvm.node_version }}'
-  register: nvm_check_default
-  changed_when: False
-  ignore_errors: True
-  tags: nvm
-
-- name: Set default node version to {{ nvm.node_version }}
-  command: sudo -iu {{ nvm.user }} nvm alias default {{ nvm.node_version }}
-  when: nvm_check_default|failed
-  tags: nvm
-
-- name: .vimrc
+- name: node development vimrc
   copy: src=jsx.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
 
-- name: npm globals
+- name: eslintrc
+  copy: src=template.eslintrc dest=/home/vagrant/.eslintrc owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
-  shell: source ~/.nvm/nvm.sh && npm i -g {{ item }}
-    executable=/bin/bash
-  with_items:
-    - js-beautify
-    - "{{ npm_globals }}"
 
+- name: install vim plugins
+  shell: >
+    vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qa -V
+  remote_user: vagrant
+  sudo: False
+  register: vim_plugins
+
+- stat: path=/vagrant/.vim/bundle/YouCompleteMe/third_party/ycmd/build.py
+  register: you_complete_me
+
+- name: initialize YouCompleteMe
+  shell: >
+    /bin/zsh -c "cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer"
+  remote_user: vagrant
+  sudo: False
+  when: you_complete_me|changed
+
+- name: initialize tern_for_vim
+  shell: >
+    /bin/zsh -c "source ~/.nvm/nvm.sh && cd ~/.vim/bundle/tern_for_vim && npm install"
+  remote_user: vagrant
+  sudo: False

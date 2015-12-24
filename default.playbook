@@ -13,8 +13,8 @@
       version: '5.12.0'
   - nvm:
       user: 'vagrant'
-      version: v0.26.1
-      node_version: '4.2.2'
+      version: v0.29.0
+      node_version: '5.3.0'
   - vim_settings:
     - 'colorscheme jellybeans'
   - vim_key_bindings:
@@ -29,9 +29,4 @@
     - nesh
     - nodemon
   roles: 
-    - vim
-    - host
-    - shell
-    - c_development
     - node_development
-    - go_development

@@ -1,11 +1,6 @@
 node_version="5.3.0"
 nvm_version="0.29.0"
 
-#if [[ ! -e "~/install-nvm.sh" ]]
-#then
-#fi
-
-
 ensure_nvm(){
   if [[ ! -e ~/install-nvm.sh ]]
   then
@@ -60,10 +55,5 @@ install_c_tags(){
 
 export NVM_DIR="/home/vagrant/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-ensure_nvm
-ensure_nvm_version
-ensure_vim_plugins
-
 
 source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh

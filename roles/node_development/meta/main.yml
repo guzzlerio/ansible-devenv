@@ -1,4 +1,5 @@
 ---
-roles: 
-  - shell
-  - vim
+dependencies:
+  - { role : host }
+  - { role: shell }
+  - { role: vim }

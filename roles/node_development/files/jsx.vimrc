@@ -17,6 +17,8 @@ Plugin 'einars/js-beautify'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
 Plugin 'janko-m/vim-test'
+Plugin 'kristijanhusak/vim-multiple-cursors'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 

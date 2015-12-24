@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
     end
 
     config.vm.provider :virtualbox do |vb|
-        vb.name = "area-devenv-ansible"
+        vb.name = "area-devenv-ansible-lab"
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         vb.customize ["modifyvm", :id, "--memory", "2048"]
         vb.customize ["modifyvm", :id, "--cpus", 2]
