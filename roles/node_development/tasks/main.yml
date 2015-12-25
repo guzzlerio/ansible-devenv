@@ -61,3 +61,4 @@
     - eslint-plugin-react
     - babel-eslint
     - mocha
+    - http-server
