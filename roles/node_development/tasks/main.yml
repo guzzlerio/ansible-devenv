@@ -46,3 +46,18 @@
     /bin/zsh -c "source ~/.nvm/nvm.sh && cd ~/.vim/bundle/tern_for_vim && npm install"
   remote_user: vagrant
   sudo: False
+
+- name: npm globals
+  remote_user: vagrant
+  sudo: False
+  shell: >
+    /bin/zsh -c "source ~/.nvm/nvm.sh && npm install -g {{ item }}"
+  with_items:
+    - js-beautify
+    - gulp
+    - nesh
+    - nodemon
+    - eslint
+    - eslint-plugin-react
+    - babel-eslint
+    - mocha

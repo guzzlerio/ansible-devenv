@@ -19,6 +19,8 @@
   apt: name=python-pip state=present
 - name: python dev
   apt: name=python-dev state=present
+- name: ctags
+  apt: name=ctags state=present
 - name: cmake
   apt: name=cmake state=present
 - name: generate locales

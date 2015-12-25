@@ -56,4 +56,6 @@ install_c_tags(){
 export NVM_DIR="/home/vagrant/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+export PATH="/home/vagrant/.nvm/versions/node/v$(nvm current)/bin/":$PATH
+
 source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh

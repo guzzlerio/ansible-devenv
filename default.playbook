@@ -23,10 +23,5 @@
     - tomtom/tlib_vim     # what is this one for?
     - ryanoasis/vim-webdevicons
     - nanotech/jellybeans.vim
-  - npm_globals:
-    - gulp
-    - grunt-cli
-    - nesh
-    - nodemon
   roles: 
     - node_development
