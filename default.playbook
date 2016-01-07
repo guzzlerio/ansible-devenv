@@ -25,3 +25,4 @@
     - nanotech/jellybeans.vim
   roles: 
     - node_development
+    - go_development
