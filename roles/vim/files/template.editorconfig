@@ -1,10 +1,8 @@
 root = true
 
-[**.js]
-e4x = true
+[**.go]
 indent_style = space
 indent_size = 2
-spaces_around_brackets = both
 
 [**.json]
 indent_style = space
