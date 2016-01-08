@@ -39,33 +39,10 @@
   remote_user: vagrant
   sudo: False
 
-- name: vim-settings
-  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Settings" 
+- name: go development vimrc
+  copy: src=golang.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
-  with_items:
-    - 'let g:go_highlight_functions = 1'
-    - 'let g:go_highlight_methods = 1'
-    - 'let g:go_highlight_structs = 1'
-    - 'let g:go_highlight_operators = 1'
-    - 'let g:go_highlight_build_constraints = 1'
-    - 'let g:go_fmt_command = \"goimports\"'
-    - 'let g:go_fmt_fail_silently = 1'
-    - 'let g:go_fmt_autosave = 0'
-      
-- name: vim-plugins
-  lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
-  remote_user: vagrant
-  sudo: False
-  with_items:
-  - fatih/vim-go
-
-- name: vim-key-bindings
-  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Keybindings" 
-  remote_user: vagrant
-  sudo: False
-  with_items:
-    - 'au FileType go nmap <leader>f <Plug>(gofmt)'
 
 - name: Source .bashrc
   shell: . ~/.bashrc
