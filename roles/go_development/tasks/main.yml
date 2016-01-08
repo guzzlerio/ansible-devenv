@@ -48,3 +48,17 @@
   shell: . ~/.bashrc
   remote_user: vagrant
   sudo: False
+
+- name: install vim plugins
+  shell: >
+    vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qa -V
+  remote_user: vagrant
+  sudo: False
+  register: vim_plugins
+
+- name: install GO Binaries
+  shell: >
+    vim -E -s -c "source ~/.vimrc" -c GoInstallBinaries -c qa -V
+  remote_user: vagrant
+  sudo: False
+  register: vim_go_binaries
