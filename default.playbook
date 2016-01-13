@@ -24,5 +24,5 @@
     - ryanoasis/vim-webdevicons
     - nanotech/jellybeans.vim
   roles: 
-    - node_development
+  #    - node_development
     - go_development
