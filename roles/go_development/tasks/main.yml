@@ -25,33 +25,31 @@
   sudo: False
 
 - name: add golang PATH
-  lineinfile: dest=/home/vagrant/.bashrc line="export GOPATH=$HOME/go" insertbefore="^#End of Paths" 
+  lineinfile: dest=/home/vagrant/.zshrc line="export GOPATH=$HOME/go" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
 
 - name: add golang PATH bin to PATH
-  lineinfile: dest=/home/vagrant/.bashrc line="export PATH=$PATH:$GOPATH/bin" insertbefore="^#End of Paths" 
+  lineinfile: dest=/home/vagrant/.zshrc line="export PATH=$PATH:$GOPATH/bin" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
 
-- name: add gimme envs to the bashrc
-  lineinfile: dest=/home/vagrant/.bashrc line="source ~/.gimme/envs/go{{ golang.version }}.env" insertbefore="^#End of Paths" 
+- name: add gimme envs to the zshrc
+  lineinfile: dest=/home/vagrant/.zshrc line="source ~/.gimme/envs/go{{ golang.version }}.env" insertbefore="^#End of Paths" 
   remote_user: vagrant
   sudo: False
+
+- name: Create target directory
+  file: path=/home/vagrant/.vim/ftplugin state=directory owner=vagrant
 
 - name: go development vimrc
-  copy: src=golang.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
+  copy: src=go.vim dest=/home/vagrant/.vim/ftplugin/go.vim owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
 
-- name: Source .bashrc
-  shell: . ~/.bashrc
+- name: vim-plugins
+  lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
   remote_user: vagrant
   sudo: False
-
-- name: install vim plugins
-  shell: >
-    vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qa -V
-  remote_user: vagrant
-  sudo: False
-  register: vim_plugins
+  with_items:
+  - fatih/vim-go

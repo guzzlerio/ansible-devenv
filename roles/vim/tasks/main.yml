@@ -6,45 +6,15 @@
   copy: src=template.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
-
 - name: vimrc
   copy: src=template.editorconfig dest=/home/vagrant/.editorconfig owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
-
 - name: vim-powerline
   lineinfile: dest=/home/vagrant/.vimrc line="source /usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/plugin/powerline.vim" state=present create=yes
   remote_user: vagrant
   sudo: False
-- name: git
-  apt: name=git state=present
 - name: vundle
   git: repo=https://github.com/gmarik/Vundle.vim.git dest=/home/vagrant/.vim/bundle/Vundle.vim update=yes
   remote_user: vagrant
   sudo: False
-- name: vim-plugins
-  lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
-  remote_user: vagrant
-  sudo: False
-  with_items:
-    - gmarik/Vundle.vim
-    - scrooloose/nerdtree
-    - kristijanhusak/vim-multiple-cursors
-    - editorconfig/editorconfig-vim
-    - airblade/vim-gitgutter
-    - "{{ vim_plugins }}"
-- name: vim-settings
-  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Settings" 
-  remote_user: vagrant
-  sudo: False
-  with_items:
-    - 'let NERDTreeDirArrows=0'
-    - "{{ vim_settings }}"
-- name: vim-key-bindings
-  lineinfile: dest=/home/vagrant/.vimrc line="{{ item }}" insertbefore="^\"End of Keybindings" 
-  remote_user: vagrant
-  sudo: False
-  with_items:
-    - 'nmap <silent> <C-D> :NERDTreeToggle<CR>'
-    - 'noremap <F7> :Autoformat<CR>'
-    - "{{ vim_key_bindings }}"

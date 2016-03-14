@@ -23,7 +23,6 @@
   remote_user: vagrant
   sudo: False
 
-  #TODO: Move the creation of the /usr/local/opt folder into the host role
 - name: Create the directory for Gradle
   file: path=/usr/local/opt state=directory owner=vagrant group=vagrant mode=0755
   remote_user: vagrant

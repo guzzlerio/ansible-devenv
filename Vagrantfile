@@ -1,9 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 #
-
-
-playbook = 
+#
+playbook =
     if File.exists? 'devenv.playbook'
         'devenv.playbook'
     else
@@ -18,9 +17,6 @@ Vagrant.configure(2) do |config|
     config.vm.provision :ansible do |ansible|
         ansible.playbook = playbook
     end
-
-    config.vm.provision "file", source: "~/.ssh/id_rsa.vagrant", destination: "/home/vagrant/.ssh/id_rsa"
-    config.vm.provision "file", source: "~/.ssh/id_rsa.vagrant.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
 
     config.vm.provider :virtualbox do |vb|
         vb.name = "area-devenv-ansible-lab"

@@ -14,36 +14,21 @@
   remote_user: vagrant
   sudo: False
 
-- name: node development vimrc
-  copy: src=jsx.vimrc dest=/home/vagrant/.vimrc owner=vagrant group=vagrant mode=0644
+- name: Create target directory
+  file: path=/home/vagrant/.vim/ftplugin state=directory owner=vagrant
+
+- name: jsx development vimrc
+  copy: src=jsx.vim dest=/home/vagrant/.vim/ftplugin/jsx.vim owner=vagrant group=vagrant mode=0644
+  remote_user: vagrant
+  sudo: False
+
+- name: javascript development vimrc
+  copy: src=jsx.vim dest=/home/vagrant/.vim/ftplugin/javascript.vim owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
 
 - name: eslintrc
   copy: src=template.eslintrc dest=/home/vagrant/.eslintrc owner=vagrant group=vagrant mode=0644
-  remote_user: vagrant
-  sudo: False
-
-- name: install vim plugins
-  shell: >
-    vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qa -V
-  remote_user: vagrant
-  sudo: False
-  register: vim_plugins
-
-- stat: path=/vagrant/.vim/bundle/YouCompleteMe/third_party/ycmd/build.py
-  register: you_complete_me
-
-- name: initialize YouCompleteMe
-  shell: >
-    /bin/zsh -c "cd ~/.vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.py --clang-completer"
-  remote_user: vagrant
-  sudo: False
-  when: you_complete_me|changed
-
-- name: initialize tern_for_vim
-  shell: >
-    /bin/zsh -c "source ~/.nvm/nvm.sh && cd ~/.vim/bundle/tern_for_vim && npm install"
   remote_user: vagrant
   sudo: False
 
@@ -62,3 +47,13 @@
     - babel-eslint
     - mocha
     - http-server
+
+- name: vim-plugins
+  lineinfile: dest=/home/vagrant/.vimrc line="Plugin '{{ item }}'" insertbefore="^\"End of Vundle Plugins" 
+  remote_user: vagrant
+  sudo: False
+  with_items:
+  - ternjs/tern_for_vim
+  - maksimr/vim-jsbeautify
+  - einars/js-beautify
+
