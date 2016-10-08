@@ -1,4 +1,4 @@
-# vim:ft=ansible:
+ vim:ft=ansible:
 #
 
 - name: debug variables

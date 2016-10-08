@@ -10,7 +10,7 @@
   - nvm:
       user: 'vagrant'
       version: v0.29.0
-      node_version: '4.2.5'
+      node_version: '5'
   roles: 
     - node_development
     - go_development

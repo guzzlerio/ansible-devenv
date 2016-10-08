@@ -3,20 +3,13 @@ let g:syntastic_javascript_checkers = ['eslint']
 "END of JSX
 
 "JsBeautify
-map <c-f> :call JsBeautify()<cr>
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
-autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+"au BufWrite *.js :call JsBeautify()
+nnoremap <leader>ff :%!js-beautify -n -P -E -a -j -q -B -k -s 2 --good-stuff -f -<CR>
 
-au BufWrite *.js :call JsBeautify()
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 "Vim Test
 let test#javascript#mocha#options = '--harmony -R tap'
