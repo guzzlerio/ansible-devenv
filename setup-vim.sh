@@ -20,3 +20,13 @@ git_get(){
 && git_get https://github.com/Shougo/neocomplete.vim.git \
 && echo "Plugins cloned!"
 )
+
+export GOPATH=/home/vagrant/go
+
+data=$(curl -s https://raw.githubusercontent.com/fatih/vim-go/master/plugin/go.vim | grep -P '\\\s\"([a-zA-Z./]+)\"' | grep -oP "[a-zA-Z./]+")
+
+for i in $data
+do
+    /usr/local/go/bin/go get $i
+done
+

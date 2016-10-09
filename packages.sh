@@ -1,7 +1,7 @@
 # SHELL
 apt-get update
 apt-get -y autoremove
-apt-get -y vim-nox
+apt-get -y install vim-nox
 apt-get -y install zsh
 apt-get -y install tmux
 apt-get -y install silversearcher-ag
