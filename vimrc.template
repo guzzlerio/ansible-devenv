@@ -20,3 +20,7 @@ set foldnestmax=10
 set foldmethod=indent
 set laststatus=2
 set encoding=utf-8
+
+au VimEnter * NERDTreeToggle
+nmap <Ctrl-D> :NERDTreeToggle<CR>
+
