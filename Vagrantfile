@@ -22,6 +22,8 @@ Vagrant.configure(2) do |config|
     config.vm.provision "file", source: "vimrc.template", destination: "/home/vagrant/.vimrc"
     config.vm.provision "shell", path: "packages.sh", privileged: true
     config.vm.provision "shell", path: "bootstrap.sh", privileged: false
+    config.vm.provision "shell", path: "setup-vim.sh", privileged: false
+    config.vm.provision "shell", path: "setup-golang.sh", privileged: false
 
 
     config.vm.provider :virtualbox do |vb|
