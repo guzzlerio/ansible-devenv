@@ -26,6 +26,8 @@
 - name: generate locales
   shell: >
     /bin/bash -c "locale-gen en_GB.UTF-8"
-- name: update locales
-  shell: >
-    /bin/bash -c "update-locale LANG=en_GB.UTF-8"
+  sudo: True
+# - name: update locales
+#   shell: >
+#     /bin/bash -c "update-locale LANG=en_GB.UTF-8"
+#   sudo: True
