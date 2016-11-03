@@ -1,5 +1,6 @@
-node_version="5.3.0"
-nvm_version="0.29.0"
+{% if nvm.node_version is defined %}
+node_version="{{ nvm.node_version }}"
+nvm_version="{{ nvm.version | default(0.29.0)}}"
 
 ensure_nvm(){
   if [[ ! -e ~/install-nvm.sh ]]
@@ -22,6 +23,7 @@ ensure_nvm_version(){
   fi
 }
 
+{% endif %}
 ensure_vim_plugins(){
     ok=1
     if [[ ! -e ~/.vim/bundle/YouCompleteMe ]]
@@ -31,12 +33,14 @@ ensure_vim_plugins(){
         ok=0
     fi
 
+    {% if nvm.node_version is defined %}
     if [[ ! -e ~/.vim/bundle/tern_for_vim ]]
     then
         echo "You need the tern_for_vim plugin"
         echo "After install invoke 'npm install' inside the ~/.vim/bundle/tern_for_vim"
         ok=0
     fi
+    {% endif %}
 
     if [[ $ok == 1 ]]
     then
@@ -44,18 +48,24 @@ ensure_vim_plugins(){
     fi
 }
 
+{% if nvm.node_version is defined %}
 install_c_tags(){
     ensure_nvm
     ensure_nvm_version
 
     npm install -g jsctags
-    sed -i '51i tags: [],' "~/.nvm/versions/node/v${node_version}/lib/node_modules/jsctags/ctags/index.js"
+    sed -i '51i tags: [],' "~/.nvm/versions/node/v$(nvm current)/lib/node_modules/jsctags/ctags/index.js"
     jsctags **/*.js
 }
+{% endif %}
 
+autoload -Uz compinit && compinit
+
+{% if nvm.node_version is defined %}
 export NVM_DIR="/home/vagrant/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH="/home/vagrant/.nvm/versions/node/v$(nvm current)/bin/":$PATH
+{% endif %}
 
 source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
