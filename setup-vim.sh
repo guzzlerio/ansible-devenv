@@ -18,6 +18,13 @@ git_get(){
 && git_get https://github.com/scrooloose/nerdtree.git  \
 && git_get https://github.com/fatih/vim-go.git \
 && git_get https://github.com/Shougo/neocomplete.vim.git \
+&& git_get https://github.com/scrooloose/syntastic.git \
+&& git_get https://github.com/tmhedberg/SimpylFold.git \
+&& git_get https://github.com/vim-scripts/indentpython.vim.git \
+&& git_get https://github.com/nvie/vim-flake8.git \
+&& git_get https://github.com/Konfekt/FastFold.git \
+&& git_get https://github.com/dbsr/vimpy.git \
+&& git_get https://github.com/maksimr/vim-jsbeautify.git \
 && echo "Plugins cloned!"
 )
 

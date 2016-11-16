@@ -21,16 +21,56 @@ set foldmethod=indent
 set laststatus=2
 set encoding=utf-8
 
+"Code Folding
+nnoremap <space> za
+
+colorscheme jellybeans
+
 "NERDTree
 au VimEnter * NERDTreeToggle
 nmap <Ctrl-D> :NERDTreeToggle<CR>
 
 "NEOComplete
 let g:neocomplete#enable_at_startup = 1
-"
+
 ""Highlight
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+""Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['golint']
+
+" Folding
+"
+augroup AutoSaveFolds
+    autocmd!
+    au BufWinLeave ?* mkview 1
+    au BufWinEnter ?* silent loadview 1
+augroup END
+
+let g:SimpylFold_docstring_preview=1
+
+" JS Beautify
+".vimrc
+map <c-f> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" for jsx
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
