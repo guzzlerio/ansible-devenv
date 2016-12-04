@@ -28,7 +28,12 @@ colorscheme jellybeans
 
 "NERDTree
 au VimEnter * NERDTreeToggle
-nmap <Ctrl-D> :NERDTreeToggle<CR>
+nmap <C-D> :NERDTreeToggle<CR>
+
+"Insert a timestamp in the format:
+"ISO8601/W3C format (http://www.w3.org/TR/NOTE-datetime):
+"%FT%T%z                    2007-08-29T02:37:13-0400
+nmap <C-S> :pu=strftime('%FT%T%z')
 
 "NEOComplete
 let g:neocomplete#enable_at_startup = 1
