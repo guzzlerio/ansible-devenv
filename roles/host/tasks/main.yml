@@ -1,4 +1,9 @@
 # vim:ft=ansible:
+
+# Enable backports
+- apt_repository:
+    repo: deb http://ftp.debian.org/debian jessie-backports main
+    state: present
 - name: update apt cache
   apt: update_cache=yes
 - name: build-essential

@@ -4,8 +4,12 @@
   apt: name=zsh state=present
 - name: powerline
   pip: name=powerline-status
-- name: tmux
-  apt: name=tmux state=present
+- name: tmux from backports
+  apt:
+    name: tmux
+    state: latest
+    default_release: jessie-backports
+    update_cache: yes
 - name: tmux.conf
   copy: src=template.tmux.conf dest=/home/vagrant/.tmux.conf owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
