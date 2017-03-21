@@ -57,3 +57,12 @@
   - maksimr/vim-jsbeautify
   - einars/js-beautify
 
+- name: nvm setup in zshrc
+  blockinfile:
+    dest: /home/vagrant/.zshrc
+    insertafter: "^# User configuration"
+    state: present
+    content: |
+      export NVM_DIR="/home/vagrant/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+      export PATH="/home/vagrant/.nvm/versions/node/v$(nvm current)/bin/":$PATH

@@ -4,6 +4,22 @@
   apt: name=zsh state=present
 - name: powerline
   pip: name=powerline-status
+- name: Download zsh installer
+  get_url: url=https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh dest=/home/vagrant/zsh-installer.sh owner=vagrant group=vagrant mode=u+x
+
+# - name: Execute the zsh-installer.sh
+- script: /home/vagrant/zsh-installer.sh
+  args:
+    creates: /home/vagrant/.oh-my-zsh/
+
+- blockinfile:
+    dest: /home/vagrant/.zshrc
+    insertafter: "^# User configuration"
+    state: present
+    content: |
+      #Start of Paths
+      #End of Paths
+
 - name: tmux from backports
   apt:
     name: tmux
@@ -18,10 +34,8 @@
   copy: src=template.bashrc dest=/home/vagrant/.bashrc owner=vagrant group=vagrant mode=0644
   remote_user: vagrant
   sudo: False
-- name: .zshrc
-  copy: src=template.zshrc dest=/home/vagrant/.zshrc owner=vagrant group=vagrant mode=0644
-  remote_user: vagrant
-  sudo: False
+# - name: .zshrc
+#   template: src=zshrc.j2 dest=/home/vagrant/.zshrc owner=vagrant group=vagrant mode=0644
 - name: zsh-powerline
   lineinfile: dest=/home/vagrant/.zshrc line="source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh" state=present create=yes
   remote_user: vagrant
@@ -32,4 +46,5 @@
   sudo: False
 - name: set shell to zsh
   user: name=vagrant shell=/bin/zsh
+
 - include: productivity.yml

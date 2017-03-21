@@ -1,0 +1,19 @@
+autoload -Uz compinit && compinit
+
+#Start of Paths
+{% if nvm is defined and nvm['node_version'] is defined %}
+export NVM_DIR="/home/vagrant/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH="/home/vagrant/.nvm/versions/node/v$(nvm current)/bin/":$PATH
+{% endif %}
+
+#End of Paths
+
+source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+
+#Start of Aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+#End of Aliases
