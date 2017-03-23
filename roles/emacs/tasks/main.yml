@@ -1,0 +1,23 @@
+# vim:ft=ansible:
+#
+- name: emacs
+  apt: name=emacs state=present
+
+- name: spacemacs
+  git: repo=https://github.com/syl20bnr/spacemacs dest=/home/vagrant/.emacs.d update=yes
+  remote_user: vagrant
+  sudo: False
+
+- name: spacemacsrc
+  copy: src=template.spacemacs dest=/home/vagrant/.spacemacs owner=vagrant group=vagrant mode=0644
+  remote_user: vagrant
+  sudo: False
+
+- debug: msg="{{ environment | to_nice_json }}"
+
+# - name: go layer deps
+#   shell: >
+#     /bin/zsh -c "go get -u -v github.com/nsf/gocode github.com/rogpeppe/godef golang.org/x/tools/cmd/oracle golang.org/x/tools/cmd/gorename golang.org/x/tools/cmd/goimports"
+#   remote_user: vagrant
+#   sudo: False
+#   when: golang.version is defined
